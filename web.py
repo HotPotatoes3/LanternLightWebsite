@@ -1,22 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template, abort
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # Main page
+    return render_template('index.html')  # `index.html` exists in the templates folder
 
-# @app.route('/left-sidebar')
-# def left_sidebar():
-#     return render_template('left-sidebar.html')
+'''
+@app.before_request
+def force_host():
+    # Allowed hosts: Add any additional domains or subdomains here
+    allowed_hosts
 
-# @app.route('/right-sidebar')
-# def right_sidebar():
-#     return render_template('right-sidebar.html')
-
-# @app.route('/no-sidebar')
-# def no_sidebar():
-#     return render_template('no-sidebar.html')
+'''
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Bind to 0.0.0.0 to make the server accessible on all network interfaces
+    app.run(host="0.0.0.0", port=5000)
