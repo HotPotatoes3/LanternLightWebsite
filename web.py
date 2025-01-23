@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, abort
 import requests
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -18,8 +19,11 @@ def get_latest_video():
         latest_video = response['items'][0]
         video_id = latest_video['id']['videoId']
         video_title = latest_video['snippet']['title']
-        video_date = latest_video['snippet']['publishedAt']
-        return {'video_id': video_id, 'title': video_title, 'published_at': video_date}
+        # Reformat published date to MM/DD/YYYY
+        published_at_raw = latest_video['snippet']['publishedAt']
+        published_at = datetime.strptime(published_at_raw, "%Y-%m-%dT%H:%M:%SZ").strftime("%m/%d/%Y")
+        return {'video_id': video_id, 'title': video_title, 'published_at': published_at}
+
 
 @app.route('/')
 def home():
