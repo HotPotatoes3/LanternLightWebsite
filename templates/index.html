@@ -40,11 +40,28 @@
 					</nav>
 
 				</div>
+			<!-- Banner -->
+			<section id="banner">
+				<header>
+					<h2><strong>Latest upload:</strong>.</h2>
+					{% if video %}
+					<h2>{{ video.title }}</h2>
+					<iframe width="560" height="315" 
+							src="https://www.youtube.com/embed/{{ video.video_id }}" 
+							frameborder="0" 
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+							allowfullscreen>
+					</iframe>
+					<p>Published on: {{ video.published_at }}</p>
+					{% else %}
+						<p>No video found.</p>
+					{% endif %}
+				</header>
+			</section>
 
 			<!-- Banner -->
 				<section id="banner">
 					<header>
-						<h2><strong>Welcome</strong>.</h2>
 						<p>
 							Our website is currently under development, join our discord for more information. 
 						</p>
