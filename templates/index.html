@@ -10,7 +10,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-        <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
+
+
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}" sizes="96x96">
+		<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon/favicon.svg') }}">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+		<link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}">
+		
+        
+		
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -21,7 +31,7 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="index.html" id="logo">Lantern Light Broadcast</a></h1>
+								<h1><a href="/" id="logo">Lantern Light Broadcast</a></h1>
 								<hr/>
 								<p>UC Merced's student run radio show!</p>
 							</header>
@@ -44,7 +54,7 @@
 			<!-- Banner -->
 			<section id="banner">
 				<header>
-					<h2><strong>Latest upload:</strong>.</h2>
+					<h2><strong>Latest upload:</strong></h2>
 					{% if video %}
 					<h2>{{ video.title }}</h2>
 					<iframe width="560" height="315" 

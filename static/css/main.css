@@ -89,6 +89,11 @@ input, select, textarea {
 		line-height: 1.85em;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
+		text-shadow: 
+			1px 1px 0 black, 
+			-1px 1px 0 black, 
+			1px -1px 0 black, 
+			-1px -1px 0 black;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -2176,7 +2181,7 @@ input, select, textarea {
 
 	#header {
 		position: relative;
-		background-image: url("../images/header.jpg");
+		background-image: url("../images/header2.gif");
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
