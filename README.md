@@ -38,12 +38,8 @@ Follow these steps to run the project locally:
    - Install Python (3.8 or higher recommended).
    - Install `pip`, if not already installed.
 
-4. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
 
-5. **Set up environment variables:**
+4. **Set up environment variables:**
    - Create a `.env` file in the root directory.
    - Add the required environment variables (e.g., API keys, configuration values). Example:
      ```env
@@ -51,12 +47,12 @@ Follow these steps to run the project locally:
      API_KEY=your_api_key
      ```
 
-6. **Run the development server:**
+5. **Run the development server:**
    ```bash
    python app.py
    ```
 
-7. **Access the website:**
+6. **Access the website:**
    Open your browser and go to `http://127.0.0.1:5000`.
 
 ---
