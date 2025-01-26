@@ -39,7 +39,7 @@ Follow these steps to run the project locally:
    - Install `pip`, if not already installed.
 
 
-4. **Set up environment variables:**
+4. **Set up environment variables:** (For youtube api mainly rn)
    - Create a `.env` file in the root directory.
    - Add the required environment variables (e.g., API keys, configuration values). Example:
      ```env
