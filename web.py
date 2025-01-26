@@ -33,6 +33,9 @@ cache = {
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
+from datetime import datetime, timedelta
+import pytz  # For handling timezone conversion
+
 def get_latest_video():
     global cache
 
@@ -43,7 +46,7 @@ def get_latest_video():
 
     # Make the API request
     logging.info("Fetching latest video from YouTube API.")
-    url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={CHANNEL_ID}&maxResults=1&order=date&type=video&key={API_KEY}'
+    url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={CHANNEL_ID}&maxResults=5&order=date&type=video&key={API_KEY}'
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -51,18 +54,27 @@ def get_latest_video():
 
         # Extract video information
         if 'items' in data and len(data['items']) > 0:
-            latest_video = data['items'][0]
-            video_id = latest_video['id']['videoId']
-            video_title = latest_video['snippet']['title']
-            published_at_raw = latest_video['snippet']['publishedAt']
-            published_at = datetime.strptime(published_at_raw, "%Y-%m-%dT%H:%M:%SZ").strftime("%m/%d/%Y")
+            for item in data['items']:
+                video_title = item['snippet']['title']
+                if "shorts" not in video_title:  # Exclude Shorts by title
+                    video_id = item['id']['videoId']
+                    published_at_raw = item['snippet']['publishedAt']
+                    
+                    # Convert to local timezone (example: UTC to EST)
+                    published_at_utc = datetime.strptime(published_at_raw, "%Y-%m-%dT%H:%M:%SZ")
+                    local_tz = pytz.timezone('America/Los_Angeles')  # Replace with your timezone
+                    published_at_local = published_at_utc.replace(tzinfo=pytz.utc).astimezone(local_tz)
+                    published_at = published_at_local.strftime("%m/%d/%Y")
 
-            # Update cache
-            video_data = {'video_id': video_id, 'title': video_title, 'published_at': published_at}
-            cache['video_data'] = video_data
-            cache['expires_at'] = datetime.now() + timedelta(minutes=30)  # Cache expires after 30 minutes
+                    # Update cache
+                    video_data = {'video_id': video_id, 'title': video_title, 'published_at': published_at}
+                    cache['video_data'] = video_data
+                    cache['expires_at'] = datetime.now() + timedelta(minutes=30)  # Cache expires after 30 minutes
 
-            return video_data
+                    return video_data
+
+            logging.error("No valid video (non-Shorts) found in API response.")
+            return None
         else:
             logging.error("No video data found in API response.")
             return None
