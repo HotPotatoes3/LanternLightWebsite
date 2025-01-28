@@ -89,11 +89,14 @@ input, select, textarea {
 		line-height: 1.85em;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
-		text-shadow: 
-			1px 1px 0 black, 
-			-1px 1px 0 black, 
-			1px -1px 0 black, 
-			-1px -1px 0 black;
+	/*!Applys stroke to all text*/
+		-webkit-text-stroke: 1px black;
+
+		/* old stroke method: text-shadow: 
+			1px 1px 2px black, 
+			-1px 1px 2px black, 
+			1px -1px 2px black, 
+			-1px -1px 2px black;  */
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -116,7 +119,7 @@ input, select, textarea {
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 400;
-		color: #483949;
+		color: #41304e;
 		line-height: 1.25em;
 	}
 
@@ -2069,7 +2072,9 @@ input, select, textarea {
 		border: 0;
 		cursor: pointer;
 		outline: 0;
-		font-weight: 300;
+		/* chnaged font weight from 300 */
+		font-weight: 700;
+		-webkit-text-stroke: 1.0px black;
 		-moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
 		-webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
 		-ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
@@ -2186,6 +2191,7 @@ input, select, textarea {
 		background-position: center center;
 		background-attachment: fixed;
 		color: #fff;
+
 		text-align: center;
 		padding: 7.5em 0 2em 0;
 		cursor: default;
@@ -2205,14 +2211,23 @@ input, select, textarea {
 			display: inline-block;
 			vertical-align: middle;
 		}
+		
+		#header .inner > footer{
+			color: #ddd;
+			font-weight: bolder;
+			-webkit-text-stroke: 0.5px black;
+		}
 
 		#header header {
 			display: inline-block;
 		}
 
 			#header header > p {
+				color: #ddd;
 				font-size: 1.25em;
 				margin: 0;
+				font-weight:900;
+				-webkit-text-stroke: 0.75px black;
 			}
 
 		#header h1 {
@@ -2248,7 +2263,8 @@ input, select, textarea {
 			}
 
 		#header footer {
-			margin: 1em 0 0 0;
+			margin: 1em;
+			/* -webkit-text-stroke: 0.5px black; */
 		}
 
 	body.homepage #header {
@@ -2295,6 +2311,8 @@ input, select, textarea {
 		padding: 1.5em 0 1.5em 0;
 		z-index: 1;
 		overflow: hidden;
+		/*set to zero, so it doesn't inherit the stroke from the Hero header*/
+		-webkit-text-stroke: 0;
 	}
 
 		#nav > ul {
@@ -2418,9 +2436,14 @@ input, select, textarea {
 		padding: 4.5em 0 4.5em 0;
 		margin-bottom: 0;
 	}
+		#banner header{
+			justify-content: center;
+		}
 
 		#banner header > p {
 			margin-bottom: 0;
+			font-weight: 500;
+			-webkit-text-stroke: 0.75px black;
 		}
 
 /* Content */
@@ -2595,7 +2618,8 @@ input, select, textarea {
 		.carousel article {
 			display: inline-block;
 			width: 18em;
-			background: #fff;
+			/*  Made bg clear as to not have it be oddly on the left of img */
+			background: #ffffff;
 			text-align: center;
 			padding: 0 1em 3em 1em;
 			margin: 0 2em 0 0;
